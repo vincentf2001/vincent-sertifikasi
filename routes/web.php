@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-//admin
+// jika pengunjung website sudah login, maka baru bisa mengakses
+// jika pengunjung website belum login, maka tidak bisa mengakses
 Route::prefix('adminpages')->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
     Route::resource('/addNewBook', App\Http\Controllers\BookController::class);
