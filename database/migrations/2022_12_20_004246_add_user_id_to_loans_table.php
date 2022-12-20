@@ -27,6 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
+        // untuk menghapus field jika ternyata ada field yang sama
         Schema::table('peminjamanbuku', function (Blueprint $table) {
             $table->dropColumn('user_id');
         });

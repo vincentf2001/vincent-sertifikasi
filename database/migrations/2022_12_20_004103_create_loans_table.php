@@ -30,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
+        // untuk menghapus tabel jika ternyata ada tabel yang sama
         Schema::dropIfExists('peminjamanbuku');
     }
 };
