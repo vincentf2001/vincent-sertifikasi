@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SpefikasiBuku;
-use App\Models\Peminjaman;
+use App\Models\Book;
+use App\Models\Loan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Symfony\Component\HttpFoundation\Response;
 
-class PeminjamanController extends Controller
+class LoanController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +17,9 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        //
-        $peminjamans = Peminjaman::all();
+        $peminjamans = Loan::all();
         $users = User::all();
-        $spesifikasiBuku = SpefikasiBuku::all();
+        $spesifikasiBuku = Book::all();
 
         return view('adminpages/peminjamans/pinjamindex', compact('peminjamans', 'users', 'spesifikasiBuku'));
     }
@@ -35,9 +31,8 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        //
         $users = User::all();
-        $spesifikasiBuku = SpefikasiBuku::all();
+        $spesifikasiBuku = Book::all();
 
         $pinjam_date = Carbon::now()->format('Y-m-d');
         $kembali_date = Carbon::now()->addDays(7)->format('Y-m-d');
@@ -53,19 +48,18 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $input = $request->all();
-        Peminjaman::create($input);
+        Loan::create($input);
         return redirect('adminpages/peminjamans/pinjamindex');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Loan $loan)
     {
         //
     }
@@ -73,43 +67,37 @@ class PeminjamanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Loan $loan)
     {
         //
-        // $peminjamans = Peminjaman::find($id);
-        // return view('adminpages/pinjamans/pinjamindex')->with('peminjamans', $peminjamans);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
-        // $peminjamans = Peminjaman::find($id);
-        $peminjamans = Peminjaman::find($id);
+        $peminjamans = Loan::find($id);
         $input = $request->all();
         $peminjamans->update($input);
-        return redirect('adminpages/peminjamans/pinjamindex')->with('flash_message', 'Buku Sudah Dikembalikan!');  
-        
+        return redirect('adminpages/peminjamans/pinjamindex')->with('flash_message', 'Buku Sudah Dikembalikan!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
         $peminjamans->delete();
 
         return redirect('adminpages/peminjamans/pinjamindex');

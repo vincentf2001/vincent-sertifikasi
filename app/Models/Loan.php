@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Peminjaman extends Model
+class Loan extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class Peminjaman extends Model
 
     public function spesifikasiBukus()
     {
-        return $this->belongsTo(SpefikasiBuku::class, 'spesifikasiBuku_id', 'id');
+        return $this->belongsTo(Book::class, 'spesifikasiBuku_id', 'id');
     }
 
     public function users()

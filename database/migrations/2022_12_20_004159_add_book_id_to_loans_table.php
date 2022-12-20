@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->integer('role')->default('0');
+        Schema::table('peminjamanbuku', function (Blueprint $table) {
+            $table->unsignedBigInteger('spesifikasiBuku_id')->index()->after('id');
+            $table->foreign('spesifikasiBuku_id')->references('id')->on('spesifikasiBuku')->onDelete('cascade');
         });
     }
 
@@ -26,9 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->dropColumn('role');
+        Schema::table('peminjamanbuku', function (Blueprint $table) {
+            $table->dropColumn('spesifikasiBuku_id');
         });
     }
 };

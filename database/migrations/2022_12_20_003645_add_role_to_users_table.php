@@ -13,17 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        //table for mysql
-        Schema::create('spesifikasiBuku', function (Blueprint $table) {
-             $table->id();
-             $table->timestamps();
-             $table->string('namaBuku');
-             $table->string('penulis');
-             $table->string('bahasa');
-             $table->string('halaman');
-             $table->string('ISBN');
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('role')->default('0');
         });
-
     }
 
     /**
@@ -33,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buku');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 };

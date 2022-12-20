@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('peminjamanbuku', function (Blueprint $table) {
-            //
-            $table->unsignedBigInteger('user_id')->index()->after('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::create('spesifikasiBuku', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('namaBuku');
+            $table->string('penulis');
+            $table->string('bahasa');
+            $table->string('halaman');
+            $table->string('ISBN');
         });
     }
 
@@ -27,9 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('peminjamanbuku', function (Blueprint $table) {
-            //
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('spesifikasibuku');
     }
 };

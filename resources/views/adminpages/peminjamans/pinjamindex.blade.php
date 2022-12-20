@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Daftar Peminjam Buku</div>
+                    <div class="card-header">Data Peminjam Buku</div>
                     <div class="card-body">
                     <tr>
                             <td><a href="{{ url('adminpages/admin') }}" class="btn btn-success btn-sm" title="Tambah Buku Baru">
@@ -62,7 +62,7 @@
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="status" id="status" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                                  value= 0 />
-                                                <button type="submit" class="btn btn-primary     btn-sm" title="Selesai" onclick="return confirm(&quot;Buku sudah dikembalikan?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Kembalikan</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Selesai" onclick="return confirm(&quot;Buku sudah dikembalikan?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Selesai</button>
                                             </form>
                                         @endif
                                         </td>

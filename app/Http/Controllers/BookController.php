@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
-use App\Models\SpefikasiBuku;
 
-class SpesifikasiBukuController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class SpesifikasiBukuController extends Controller
      */
     public function index()
     {
-        //
         return view('adminpages/addNewBook');
     }
 
@@ -36,19 +35,18 @@ class SpesifikasiBukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $input = $request->all();
-        SpefikasiBuku::create($input);
-        return redirect('adminpages/admin')->with('flash_message', 'Buku Sudah Ditambahkan!');  
+        Book::create($input);
+        return redirect('adminpages/admin')->with('flash_message', 'Buku Sudah Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
         //
     }
@@ -56,13 +54,12 @@ class SpesifikasiBukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
-        $spesifikasiBuku = SpefikasiBuku::find($id);
+        $spesifikasiBuku = Book::find($id);
         return view('adminpages/editBook')->with('spesifikasiBuku', $spesifikasiBuku);
     }
 
@@ -70,28 +67,25 @@ class SpesifikasiBukuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
-        $spesifikasiBuku = SpefikasiBuku::find($id);
+        $spesifikasiBuku = Book::find($id);
         $input = $request->all();
         $spesifikasiBuku->update($input);
-        return redirect('adminpages/admin')->with('flash_message', 'Spesifikasi Buku Berubah!');  
+        return redirect('adminpages/admin')->with('flash_message', 'Spesifikasi Buku Berubah!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
         //
-        // SpefikasiBuku::destroy($id);
-        // return redirect('adminpages/admin')->with('flash_message', 'Buku Terhapus!');  
     }
 }

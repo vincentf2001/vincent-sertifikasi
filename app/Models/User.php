@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function peminjamans()
     {
-        return $this->hasMany(Peminjaman::class, 'user_id', 'id');
+        return $this->hasMany(Loan::class, 'user_id', 'id');
     }
 }

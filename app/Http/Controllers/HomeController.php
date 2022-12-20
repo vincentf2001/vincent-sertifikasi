@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
-use App\Models\SpefikasiBuku;
 
 class HomeController extends Controller
 {
@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $spesifikasiBuku = SpefikasiBuku::all();
+        $spesifikasiBuku = Book::all();
         return view('home')->with('spesifikasiBuku', $spesifikasiBuku);
     }
 }

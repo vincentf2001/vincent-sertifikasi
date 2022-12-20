@@ -18,7 +18,7 @@
         <input type="text" name="halaman" id="halaman" value="{{$spesifikasiBuku->halaman}}" class="form-control"></br>
         <label>ISBN</label></br>
         <input type="text" name="ISBN" id="ISBN" value="{{$spesifikasiBuku->ISBN}}" class="form-control"></br>
-        <input type="submit" value="Done" class="btn btn-success"></br>
+        <input type="submit" value="Ubah" class="btn btn-success"></br>
     </form>
   
   </div>
