@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        // untuk membuat tabel peminjamanbuku beserta fieldnya
         Schema::create('peminjamanbuku', function (Blueprint $table) {
             $table->id();
             $table->date('pinjam_date');

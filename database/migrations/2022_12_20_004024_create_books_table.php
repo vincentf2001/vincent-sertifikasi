@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        // untuk membuat tabel spesifikasibuku beserta fieldnya
         Schema::create('spesifikasiBuku', function (Blueprint $table) {
             $table->id();
             $table->timestamps();

@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        // untuk menambahkan field pada tabel peminjamanbuku
         Schema::table('peminjamanbuku', function (Blueprint $table) {
             $table->unsignedBigInteger('spesifikasiBuku_id')->index()->after('id');
             $table->foreign('spesifikasiBuku_id')->references('id')->on('spesifikasiBuku')->onDelete('cascade');
