@@ -1,31 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>No.</th>
-                <th>Nama Buku</th>
-                <th>Penulis</th>
-                <th>Bahasa</th>
-                <th>Halaman</th>
-                <th>ISBN</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($spesifikasiBuku as $itembuku)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $itembuku->namaBuku }}</td>
-                    <td>{{ $itembuku->penulis }}</td>
-                    <td>{{ $itembuku->bahasa }}</td>
-                    <td>{{ $itembuku->halaman }}</td>
-                    <td>{{ $itembuku->ISBN }}</td>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 @endsection
