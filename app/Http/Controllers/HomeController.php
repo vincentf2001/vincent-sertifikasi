@@ -24,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // fungsi ini akan dipanggil ketika membuka halaman spesifikasiBuku
+
         $spesifikasiBuku = Book::all();
         return view('home')->with('spesifikasiBuku', $spesifikasiBuku);
     }

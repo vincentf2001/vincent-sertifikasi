@@ -14,6 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
+        // fungsi ini akan dipanggil ketika membuka halaman adminpages/addNewBook (halaman untuk membuat buku)
+
         return view('adminpages/addNewBook');
     }
 
@@ -35,6 +37,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // fungsi ini akan dipanggil ketika klik tombol submit pada saat membuat buku
+
         $input = $request->all();
         Book::create($input);
         return redirect('adminpages/admin')->with('flash_message', 'Buku Sudah Ditambahkan!');
@@ -59,6 +63,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
+        // fungsi ini akan dipanggil ketika membuka halaman adminpages/editBook (halaman untuk mengedit buku)
+
         $spesifikasiBuku = Book::find($id);
         return view('adminpages/editBook')->with('spesifikasiBuku', $spesifikasiBuku);
     }
@@ -72,6 +78,8 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // fungsi ini akan dipanggil ketika klik tombol submit pada saat mengedit buku
+
         $spesifikasiBuku = Book::find($id);
         $input = $request->all();
         $spesifikasiBuku->update($input);

@@ -17,6 +17,8 @@ class LoanController extends Controller
      */
     public function index()
     {
+        // fungsi ini akan dipanggil ketika membuka halaman adminpages/peminjamans/pinjamindex
+
         $peminjamans = Loan::all();
         $users = User::all();
         $spesifikasiBuku = Book::all();
@@ -31,6 +33,8 @@ class LoanController extends Controller
      */
     public function create()
     {
+        // fungsi ini akan dipanggil ketika membuka halaman adminpages/peminjamans/tambahpinjambuku (halaman untuk membuat pinjaman)
+
         $users = User::all();
         $spesifikasiBuku = Book::all();
 
@@ -48,6 +52,8 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
+        // fungsi ini akan dipanggil ketika klik tombol submit pada saat membuat pinjaman
+
         $input = $request->all();
         Loan::create($input);
         return redirect('adminpages/peminjamans/pinjamindex');
@@ -84,6 +90,8 @@ class LoanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // fungsi ini akan dipanggil ketika membuka halaman adminpages/peminjamans/pinjamindex (halaman untuk mengedit status buku)
+
         $peminjamans = Loan::find($id);
         $input = $request->all();
         $peminjamans->update($input);
@@ -98,6 +106,8 @@ class LoanController extends Controller
      */
     public function destroy($id)
     {
+        // fungsi ini akan dipanggil untuk menghapus pinjaman
+
         $peminjamans->delete();
 
         return redirect('adminpages/peminjamans/pinjamindex');

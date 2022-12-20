@@ -14,6 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        // fungsi ini akan dipanggil ketika membuka halaman adminpages/admin
+
         $spesifikasiBuku = Book::all();
         return view('adminpages/admin')->with('spesifikasiBuku', $spesifikasiBuku);
     }
