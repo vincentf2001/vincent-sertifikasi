@@ -20,16 +20,16 @@ Route::get('/', function () {
 //admin
 Route::prefix('adminpages')->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
-    Route::resource('/addNewBook', App\Http\Controllers\SpesifikasiBukuController::class);
-    Route::get('/editBook/{id}', [App\Http\Controllers\SpesifikasiBukuController::class, 'edit']);
-    Route::Patch('/editBook/{id}', [App\Http\Controllers\SpesifikasiBukuController::class, 'update']);
-    Route::Delete('/admin/{id}', [App\Http\Controllers\SpesifikasiBukuController::class, 'destroy']);
-    Route::get('/peminjamans/pinjamindex', [App\Http\Controllers\PeminjamanController::class, 'index']);
-    Route::get('/peminjamans/tambahpinjambuku', [App\Http\Controllers\PeminjamanController::class, 'create']);
-    Route::post('/peminjamans/tambahpinjambuku', [App\Http\Controllers\PeminjamanController::class, 'store']);
-    Route::Patch('/peminjamans/pinjamindex/{id}', [App\Http\Controllers\PeminjamanController::class, 'update']);
+    Route::resource('/addNewBook', App\Http\Controllers\BookController::class);
+    Route::get('/editBook/{id}', [App\Http\Controllers\BookController::class, 'edit']);
+    Route::Patch('/editBook/{id}', [App\Http\Controllers\BookController::class, 'update']);
+    Route::Delete('/admin/{id}', [App\Http\Controllers\BookController::class, 'destroy']);
+    Route::get('/peminjamans/pinjamindex', [App\Http\Controllers\LoanController::class, 'index']);
+    Route::get('/peminjamans/tambahpinjambuku', [App\Http\Controllers\LoanController::class, 'create']);
+    Route::post('/peminjamans/tambahpinjambuku', [App\Http\Controllers\LoanController::class, 'store']);
+    Route::Patch('/peminjamans/pinjamindex/{id}', [App\Http\Controllers\LoanController::class, 'update']);
 });
 
-Auth::routes();
+\Illuminate\Support\Facades\Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
