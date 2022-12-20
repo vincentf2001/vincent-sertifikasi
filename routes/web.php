@@ -14,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
+});
+
+//admin
+Route::prefix('adminpages')->middleware(['auth', 'isAdmin'])->group(function() {
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+    Route::resource('/addNewBook', App\Http\Controllers\SpesifikasiBukuController::class);
+    Route::get('/editBook/{id}', [App\Http\Controllers\SpesifikasiBukuController::class, 'edit']);
+    Route::Patch('/editBook/{id}', [App\Http\Controllers\SpesifikasiBukuController::class, 'update']);
+    Route::Delete('/admin/{id}', [App\Http\Controllers\SpesifikasiBukuController::class, 'destroy']);
+    Route::get('/peminjamans/pinjamindex', [App\Http\Controllers\PeminjamanController::class, 'index']);
+    Route::get('/peminjamans/tambahpinjambuku', [App\Http\Controllers\PeminjamanController::class, 'create']);
+    Route::post('/peminjamans/tambahpinjambuku', [App\Http\Controllers\PeminjamanController::class, 'store']);
+    Route::Patch('/peminjamans/pinjamindex/{id}', [App\Http\Controllers\PeminjamanController::class, 'update']);
 });
 
 Auth::routes();
