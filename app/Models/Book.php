@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
+
+    protected $table = 'spesifikasibuku';
+    protected $primaryKey = 'id';
+    protected $fillable = ['namaBuku', 'penulis', 'bahasa', 'halaman', 'ISBN'];
+
+    public function peminjamans()
+    {
+        return $this->hasMany(Loan::class, 'spesifikasiBuku_id', 'id');
+    }
 }
