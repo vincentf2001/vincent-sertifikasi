@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-    ];
+    ]; //memberitahukan kepada laravel apa saja field yang dapat di isi
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,6 +44,8 @@ class User extends Authenticatable
 
     public function peminjamans()
     {
+        // eloquent laravel untuk terhubung dengan tabel peminjaman
+
         return $this->hasMany(Loan::class, 'user_id', 'id');
     }
 }

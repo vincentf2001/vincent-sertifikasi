@@ -17,15 +17,19 @@ class Loan extends Model
         'pinjam_date',
         'kembali_date',
         'status'
-    ];
+    ]; //memberitahukan kepada laravel apa saja field yang dapat di isi
 
     public function spesifikasiBukus()
     {
+        // eloquent laravel untuk terhubung dengan tabel spesifikasiBuku
+
         return $this->belongsTo(Book::class, 'spesifikasiBuku_id', 'id');
     }
 
     public function users()
     {
+        // eloquent laravel untuk terhubung dengan tabel users
+
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
