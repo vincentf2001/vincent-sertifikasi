@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $spesifikasiBuku = Book::all();
+        return view('adminpages/admin')->with('spesifikasiBuku', $spesifikasiBuku);
     }
 
     /**
@@ -80,5 +82,10 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Loan;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LoanController extends Controller
@@ -14,7 +17,11 @@ class LoanController extends Controller
      */
     public function index()
     {
-        //
+        $peminjamans = Loan::all();
+        $users = User::all();
+        $spesifikasiBuku = Book::all();
+
+        return view('adminpages/peminjamans/pinjamindex', compact('peminjamans', 'users', 'spesifikasiBuku'));
     }
 
     /**
@@ -24,7 +31,13 @@ class LoanController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $spesifikasiBuku = Book::all();
+
+        $pinjam_date = Carbon::now()->format('Y-m-d');
+        $kembali_date = Carbon::now()->addDays(7)->format('Y-m-d');
+
+        return view('adminpages/peminjamans/tambahpinjambuku', compact('users', 'spesifikasiBuku', 'pinjam_date', 'kembali_date'));
     }
 
     /**
@@ -35,7 +48,9 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Loan::create($input);
+        return redirect('adminpages/peminjamans/pinjamindex');
     }
 
     /**
@@ -67,9 +82,12 @@ class LoanController extends Controller
      * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loan $loan)
+    public function update(Request $request, $id)
     {
-        //
+        $peminjamans = Loan::find($id);
+        $input = $request->all();
+        $peminjamans->update($input);
+        return redirect('adminpages/peminjamans/pinjamindex')->with('flash_message', 'Buku Sudah Dikembalikan!');
     }
 
     /**
@@ -78,8 +96,10 @@ class LoanController extends Controller
      * @param  \App\Models\Loan  $loan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loan $loan)
+    public function destroy($id)
     {
-        //
+        $peminjamans->delete();
+
+        return redirect('adminpages/peminjamans/pinjamindex');
     }
 }

@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return view('adminpages/addNewBook');
     }
 
     /**
@@ -35,7 +35,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Book::create($input);
+        return redirect('adminpages/admin')->with('flash_message', 'Buku Sudah Ditambahkan!');
     }
 
     /**
@@ -55,9 +57,10 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit($id)
     {
-        //
+        $spesifikasiBuku = Book::find($id);
+        return view('adminpages/editBook')->with('spesifikasiBuku', $spesifikasiBuku);
     }
 
     /**
@@ -67,9 +70,12 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, $id)
     {
-        //
+        $spesifikasiBuku = Book::find($id);
+        $input = $request->all();
+        $spesifikasiBuku->update($input);
+        return redirect('adminpages/admin')->with('flash_message', 'Spesifikasi Buku Berubah!');
     }
 
     /**
